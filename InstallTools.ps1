@@ -38,7 +38,7 @@ $multiLineText = @"
   `"scripts`": {
     `"build`": `"dotnet build --configuration Release`",
     `"test`": `"dotnet test --configuration Release`",
-    `"ci": `"dotnet r build && dotnet r test`",
+    `"ci": `"dotnet r build && dotnet r test`"    
   }
 }
 "@
