@@ -2,7 +2,7 @@
 
 namespace IntegrationConsole;
 [ToNullObject]
-internal interface IEmployee
+public interface IEmployee
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

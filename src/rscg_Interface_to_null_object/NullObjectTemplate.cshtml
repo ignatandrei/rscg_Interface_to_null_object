@@ -14,20 +14,28 @@
 /// <summary>
     /// This static partial class contains extension methods for sorting collections of @Model.Name objects.
     /// </summary>
+
+ #nullable enable
+ #pragma warning disable CS8603
+ #pragma warning disable CS8625
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [global::System.CodeDom.Compiler.GeneratedCode("GeneratorName","@Generated.rscg_Interface_to_null_object.TheAssemblyInfo.DateGeneratedUTC.ToString("yyyy.1MMdd.1HHmm.1ss")")]
-partial class @(nameClass) : @Model.FullName
+public partial class @(nameClass) : @Model.FullName
 {
 @foreach(var prop in Model.props){
     <text>
-        public @prop.Type @prop.Name { get; set; } = default(@prop.Type);
+        public virtual @prop.Type @prop.Name { get; set; } = default(@prop.Type);
     </text>
 }
 @foreach (var func in Model.functions)
 {
     <text>
-        @func.ReturnType @func.ToDisplayString() { return default(@func.ReturnType); }
+        public virtual @func.ReturnType @Model.DisplayFunc(func) { return default(@func.ReturnType); }
     </text>
 }
 
 }
+
+#nullable restore
+#pragma warning restore CS8603
+#pragma warning restore CS8625

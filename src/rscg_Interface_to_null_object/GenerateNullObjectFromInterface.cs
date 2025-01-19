@@ -27,6 +27,7 @@ ExecuteSort(spc, data));
         var data = context.TargetSymbol as INamedTypeSymbol;
         if (data != null)
         {
+            
             return new DataFromExposeInterface(data);
         }
 

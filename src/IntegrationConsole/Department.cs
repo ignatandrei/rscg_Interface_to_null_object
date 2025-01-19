@@ -3,7 +3,7 @@ using InterfaceToNullObject;
 
 namespace IntegrationConsole;
 [ToNullObject]
-internal interface IDepartment
+public interface IDepartment
 {
     public string Name { get; set; }
 }
