@@ -12,12 +12,34 @@ internal class DataFromExposeInterface
     public string DisplayFunc(IMethodSymbol methodSymbol)
     {
         //string IEmployee.GetFullName()
-        var str = methodSymbol.ToDisplayString();
+        var sdf=new  SymbolDisplayFormat(
+                globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Included,
+                genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+                memberOptions:
+                    SymbolDisplayMemberOptions.IncludeParameters |
+                    SymbolDisplayMemberOptions.IncludeType |
+                    SymbolDisplayMemberOptions.IncludeRef |
+                    SymbolDisplayMemberOptions.IncludeContainingType,
+                kindOptions:
+                    SymbolDisplayKindOptions.IncludeMemberKeyword,
+                parameterOptions:
+                    SymbolDisplayParameterOptions.IncludeName |
+                    SymbolDisplayParameterOptions.IncludeType |
+                    SymbolDisplayParameterOptions.IncludeParamsRefOut |
+                    SymbolDisplayParameterOptions.IncludeDefaultValue,
+                localOptions: SymbolDisplayLocalOptions.IncludeType,
+                miscellaneousOptions:
+                    SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+                    SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+                    SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+
+        var str = methodSymbol.ToDisplayString(sdf);
         //remove the interface name that can appear before arguments
-        var index = str.IndexOf('(');
+        
         int dot = 0;
         do
         {
+            var index = str.IndexOf('(');
             dot = str.IndexOf('.');
             if (dot < index && dot > 0) str = str.Substring(dot + 1);
 

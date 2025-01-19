@@ -8,5 +8,7 @@ public interface IEmployee
     public string LastName { get; set; }
     public IDepartment Department { get; set; }
     public string GetFullName();
-  
+
+    public string GetFullNameAndDepartment(string separator);
+
 }
