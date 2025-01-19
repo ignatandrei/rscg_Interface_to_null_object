@@ -1,4 +1,7 @@
 cls
+Copy-Item "README.md" "readme.txt"
+New-Item -Path src -ItemType "directory"
+cd src
 dotnet new tool-manifest
 #dotnet tool install --local coverlet.console
 #dotnet tool install --local csharpier
@@ -27,3 +30,18 @@ dotnet tool install --local run-script
 #dotnet tool install --local strawberryshake.tools
 dotnet tool install --local watch2
 #dotnet tool install --local xunit-cli
+# add global json for run script
+$file = "global.json"
+
+$multiLineText = @"
+{
+  `"scripts`": {
+    `"build`": `"dotnet build --configuration Release`",
+    `"test`": `"dotnet test --configuration Release`",
+    `"ci": `"dotnet r build && dotnet r test`",
+  }
+}
+"@
+
+
+New-Item $file -ItemType File -Value $multiLineText
