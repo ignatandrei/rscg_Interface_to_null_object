@@ -10,5 +10,6 @@ public interface IEmployee
     public string GetFullName();
 
     public string GetFullNameAndDepartment(string separator);
+    public bool MoveEmployeeToDepartment(IDepartment department);
 
 }

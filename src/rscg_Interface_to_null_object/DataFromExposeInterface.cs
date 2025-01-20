@@ -28,6 +28,7 @@ internal class DataFromExposeInterface
                     SymbolDisplayParameterOptions.IncludeParamsRefOut |
                     SymbolDisplayParameterOptions.IncludeDefaultValue,
                 localOptions: SymbolDisplayLocalOptions.IncludeType,
+                typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
                 miscellaneousOptions:
                     SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
                     SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
@@ -42,8 +43,9 @@ internal class DataFromExposeInterface
             var index = str.IndexOf('(');
             dot = str.IndexOf('.');
             if (dot < index && dot > 0) str = str.Substring(dot + 1);
+            if (dot > index) break;            
 
-        } while (dot > 0);
+        } while (dot > 0 );
         
 
         return str;
