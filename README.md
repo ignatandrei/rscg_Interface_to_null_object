@@ -1,6 +1,6 @@
-[rscg_Interface_to_null_object](https://www.nuget.org/packages/rscg_Interface_to_null_object)
+[![NuGet version](https://img.shields.io/nuget/v/rscg_Interface_to_null_object.svg?style=flat-square)](https://www.nuget.org/packages/rscg_Interface_to_null_object)
 
-[rscg_Interface_to_null_object_common](https://www.nuget.org/packages/rscg_Interface_to_null_object_common)
+[![NuGet version](https://img.shields.io/nuget/v/rscg_Interface_to_null_object_common.svg?style=flat-square)](https://www.nuget.org/packages/rscg_Interface_to_null_object_common)
 
 
 # Interface to Null Object Pattern
