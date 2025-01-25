@@ -15,5 +15,11 @@
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
+	<ItemGroup>
+		<CompilerVisibleProperty Include="I2NO_String" />
+	</ItemGroup>
+	<PropertyGroup>
+		<I2NO_String>return ""</I2NO_String>	
+</PropertyGroup>
 
 </Project>

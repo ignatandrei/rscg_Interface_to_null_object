@@ -50,7 +50,20 @@ internal class DataFromExposeInterface
 
         return str;
     }
+    public string DefaultValueReturnFunc(IMethodSymbol methodSymbol)
+    {
+        var defReturn  = methodSymbol.ReturnType.ToString();
+        var defaultReturn = $"return default({defReturn})";
+        var key = defReturn.Replace(".", "_");
+        if (DefMethodReturns.ContainsKey(key))
+        {
+            return DefMethodReturns[key];
+        }
+        return defaultReturn;
+    }
     public string FullName { get; private set; }
+    public Dictionary<string, string> DefMethodReturns { get; internal set; } = [];
+
     public DataFromExposeInterface(INamedTypeSymbol type)
     {
         //this.type = type;

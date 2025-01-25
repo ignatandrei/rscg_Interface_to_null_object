@@ -25,6 +25,7 @@ Or add the nuget packages rscg_Interface_to_null_object  and rscg_Interface_to_n
 
 # Usage
 
+## Simple usage
 ```csharp
 [InterfaceToNullObject.ToNullObject]
 public interface IEmployee
@@ -54,5 +55,23 @@ public partial class Employee_null : global::IntegrationConsole.IEmployee
 }
 ```
 
+## Adding default values
+
+Let's say you want to return an empty string for the GetFullName method, you can add the following code to your csproj file
+
+```xml
+<ItemGroup>
+  <CompilerVisibleProperty Include="I2NO_String" />
+</ItemGroup>
+<PropertyGroup>
+  <I2NO_String>return ""</I2NO_String>	
+</PropertyGroup>
+```
+
+So now the code will be generated like this
+
+```csharp
+public virtual string GetFullName() {  return "" ; }
+```
 
 
