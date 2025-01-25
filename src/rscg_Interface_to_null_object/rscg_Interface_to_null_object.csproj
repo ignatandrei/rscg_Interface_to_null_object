@@ -28,8 +28,6 @@
 
 
 	</ItemGroup>
-
-
 	<PropertyGroup>
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 		<WarningsNotAsErrors>CS0436</WarningsNotAsErrors>

@@ -29,8 +29,9 @@ public partial class @(nameClass) : @Model.FullName
 }
 @foreach (var func in Model.functions)
 {
+    string ret = Model.DefaultValueReturnFunc(func);
     <text>
-        public virtual @func.ReturnType @Model.DisplayFunc(func) { return default(@func.ReturnType); }
+        public virtual @func.ReturnType @Model.DisplayFunc(func) {  @(ret) ; }
     </text>
 }
 
