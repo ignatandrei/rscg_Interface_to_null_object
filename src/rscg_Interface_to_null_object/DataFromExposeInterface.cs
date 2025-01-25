@@ -50,11 +50,26 @@ internal class DataFromExposeInterface
 
         return str;
     }
+    public string HelpVisible(IMethodSymbol methodSymbol)
+    {
+        var key = methodSymbol.ReturnType.ToString();
+        key = replaceString(key);
+        return key;
+    }
+    private string replaceString(string key)
+    {
+        key = key.Replace(".", "_");
+        key = key.Replace("[]", "_Array");
+        key = key.Replace("<", "_Of_");
+        key = key.Replace(">", "_EndOf");
+        return key;
+    }
     public string DefaultValueReturnFunc(IMethodSymbol methodSymbol)
     {
         var defReturn  = methodSymbol.ReturnType.ToString();
         var defaultReturn = $"return default({defReturn})";
-        var key = defReturn.Replace(".", "_");
+        var key = defReturn;
+        key = replaceString(key);
         if (DefMethodReturns.ContainsKey(key))
         {
             return DefMethodReturns[key];

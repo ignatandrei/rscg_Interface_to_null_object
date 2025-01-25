@@ -30,7 +30,17 @@ public partial class @(nameClass) : @Model.FullName
 @foreach (var func in Model.functions)
 {
     string ret = Model.DefaultValueReturnFunc(func);
+    string helpVisible = Model.HelpVisible(func);
     <text>
+        /*
+        To replace the default value, put
+        <ItemGroup>
+            <CompilerVisibleProperty Include="I2NO_@helpVisible" />
+        </ItemGroup>
+        <PropertyGroup>
+            <I2NO_@helpVisible>return whatever you want</I2NO_@helpVisible>
+        </PropertyGroup>
+        */
         public virtual @func.ReturnType @Model.DisplayFunc(func) {  @(ret) ; }
     </text>
 }

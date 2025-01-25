@@ -19,6 +19,8 @@ public class Interface2NullObject: IIncrementalGenerator
                     if(key.StartsWith("_")) key = key.Substring(1);
                     if (provider.GlobalOptions.TryGetValue(item, out var val))
                     {
+                        val = val.Replace("_Of_", "<");
+                        val = val.Replace("_EndOf", ">");
                         lst[key] = val;
                     }
                 }
