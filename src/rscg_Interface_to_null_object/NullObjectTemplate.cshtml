@@ -35,10 +35,10 @@ public partial class @(nameClass) : @Model.FullName
         /*
         To replace the default value, put
         <ItemGroup>
-            <CompilerVisibleProperty Include="I2NO_@helpVisible" />
+            <CompilerVisibleProperty Include="@("I2NO_"+helpVisible)" />
         </ItemGroup>
         <PropertyGroup>
-            <I2NO_@helpVisible>return whatever you want</I2NO_@helpVisible>
+            <@("I2NO_" + helpVisible)>return whatever you want</@("I2NO_"+helpVisible)>
         </PropertyGroup>
         */
         public virtual @func.ReturnType @Model.DisplayFunc(func) {  @(ret) ; }
