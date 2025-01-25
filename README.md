@@ -74,4 +74,21 @@ So now the code will be generated like this
 public virtual string GetFullName() {  return "" ; }
 ```
 
+For array and generics, see 
+```xml
+<ItemGroup>
+	<CompilerVisibleProperty Include="I2NO_String" />
+	<CompilerVisibleProperty Include="I2NO_IntegrationConsole_IEmployee_Array" />
+	<CompilerVisibleProperty Include="I2NO_System_Collections_Generic_IAsyncEnumerable_Of_IntegrationConsole_IEmployee_EndOf" />
+</ItemGroup>
+<ItemGroup>
+  <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+</ItemGroup>
+<PropertyGroup>
+	<I2NO_String>return ""</I2NO_String>
+	<I2NO_IntegrationConsole_IEmployee_Array>return []</I2NO_IntegrationConsole_IEmployee_Array>
+	<I2NO_System_Collections_Generic_IAsyncEnumerable_Of_IntegrationConsole_IEmployee_EndOf>return AsyncEnumerable.Empty_Of_IntegrationConsole.IEmployee_EndOf();</I2NO_System_Collections_Generic_IAsyncEnumerable_Of_IntegrationConsole_IEmployee_EndOf>
+</PropertyGroup>
+
+```
 
