@@ -12,8 +12,8 @@ Add to your csproj file:
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="rscg_Interface_to_null_object" Version="2025.125.2045"  OutputItemType="Analyzer" ReferenceOutputAssembly="false"  />
-    <PackageReference Include="rscg_Interface_to_null_object_common" Version="2025.125.2045" />
+    <PackageReference Include="rscg_Interface_to_null_object" Version="2025.209.1000"  OutputItemType="Analyzer" ReferenceOutputAssembly="false"  />
+    <PackageReference Include="rscg_Interface_to_null_object_common" Version="2025.209.1000" />
   </ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
