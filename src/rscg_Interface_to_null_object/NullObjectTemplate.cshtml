@@ -20,6 +20,7 @@
  #pragma warning disable CS8625
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [global::System.CodeDom.Compiler.GeneratedCode("GeneratorName","@Generated.rscg_Interface_to_null_object.TheAssemblyInfo.DateGeneratedUTC.ToString("yyyy.1MMdd.1HHmm.1ss")")]
+@Model.DebuggerDisplay()
 public partial class @(nameClass) : @Model.FullName
 {
 @foreach(var prop in Model.props){
@@ -46,6 +47,24 @@ public partial class @(nameClass) : @Model.FullName
 }
 
 }
+
+
+public class @(Model.Name + "Converter") : System.Text.Json.Serialization.JsonConverter<@(Model.FullName)>
+    {
+    public override @Model.FullName Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+    {
+    // Deserialize the JSON to the concrete type @Model.Name
+    return System.Text.Json.JsonSerializer.Deserialize<@nameClass>
+        (ref reader, options);
+        }
+
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, @Model.FullName value, System.Text.Json.JsonSerializerOptions options)
+        {
+        // Serialize the concrete type @Model.Name
+        System.Text.Json.JsonSerializer.Serialize(writer, (@nameClass)value, options);
+        }
+        }
+
 
 #nullable restore
 #pragma warning restore CS8603

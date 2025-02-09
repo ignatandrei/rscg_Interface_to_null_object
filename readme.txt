@@ -1,3 +1,4 @@
+
 # Interface to Null Object Pattern
 Implementation of https://en.wikipedia.org/wiki/Null_object_pattern  from interface
 
@@ -20,6 +21,7 @@ Or add the nuget packages rscg_Interface_to_null_object  and rscg_Interface_to_n
 
 # Usage
 
+## Simple usage
 ```csharp
 [InterfaceToNullObject.ToNullObject]
 public interface IEmployee
@@ -47,9 +49,35 @@ public partial class Employee_null : global::IntegrationConsole.IEmployee
         public virtual string GetFullName() { return default(string); }
     
 }
+
+```
+## Deserialize to interface
+
+See following code that deserializes to interface with a converter that is automatically generated
+
+```csharp
+//serialize and deserialize
+var empString = JsonSerializer.Serialize(employee);
+Console.WriteLine(empString);
+//deserialize
+
+var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    DefaultBufferSize = 128
+};
+options.Converters.Add(new IDepartmentConverter());
+options.Converters.Add(new IEmployeeConverter());
+
+var emp2 = JsonSerializer.Deserialize<IEmployee>(empString,options);
+ArgumentNullException.ThrowIfNull(emp2);
+Console.WriteLine(emp2.FirstName);
+Console.WriteLine(emp2.Department.Name);
+Debug.Assert(emp2.FirstName == "Andrei");
 ```
 
-Adding default values
+
+## Adding default values
 
 Let's say you want to return an empty string for the GetFullName method, you can add the following code to your csproj file
 

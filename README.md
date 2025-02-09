@@ -53,7 +53,33 @@ public partial class Employee_null : global::IntegrationConsole.IEmployee
         public virtual string GetFullName() { return default(string); }
     
 }
+
 ```
+## Deserialize to interface
+
+See following code that deserializes to interface with a converter that is automatically generated
+
+```csharp
+//serialize and deserialize
+var empString = JsonSerializer.Serialize(employee);
+Console.WriteLine(empString);
+//deserialize
+
+var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    DefaultBufferSize = 128
+};
+options.Converters.Add(new IDepartmentConverter());
+options.Converters.Add(new IEmployeeConverter());
+
+var emp2 = JsonSerializer.Deserialize<IEmployee>(empString,options);
+ArgumentNullException.ThrowIfNull(emp2);
+Console.WriteLine(emp2.FirstName);
+Console.WriteLine(emp2.Department.Name);
+Debug.Assert(emp2.FirstName == "Andrei");
+```
+
 
 ## Adding default values
 

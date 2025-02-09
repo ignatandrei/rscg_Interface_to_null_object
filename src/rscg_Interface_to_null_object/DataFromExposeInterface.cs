@@ -1,11 +1,26 @@
 ﻿
 using Microsoft.CodeAnalysis;
+using System.Text;
 
 namespace rscg_Interface_to_null_object;
+
 internal class DataFromExposeInterface
 {
     public string Name { get; private set; }
-
+    public string DebuggerDisplay()  
+    {
+        StringBuilder sb = new StringBuilder("[System.Diagnostics.DebuggerDisplay(");
+        sb.Append("\"");
+        foreach (var item in props)
+        {
+            sb.Append(item.Name);
+            sb.Append(" = {");
+            sb.Append(item.Name);
+            sb.Append("} " );
+        }
+        sb.Append("\")]");
+        return sb.ToString();
+    }
     internal IPropertySymbol[] props;
     public IMethodSymbol[] functions;
     //private INamedTypeSymbol type;
