@@ -23,6 +23,24 @@
 @Model.DebuggerDisplay()
 public partial class @(nameClass) : @Model.FullName
 {
+
+    public static void CopyProperties(@Model.FullName source , @Model.FullName destination){
+
+@foreach (var prop in Model.props)
+{
+    <text>
+        destination.@prop.Name = source.@prop.Name;
+    </text>
+}
+
+    }
+    public void CopyPropertiesFrom(@Model.FullName data){
+        CopyProperties(data, this);
+    }
+    public void CopyPropertiesTo(@Model.FullName data){
+        CopyProperties(this,data);
+    }
+
 @foreach(var prop in Model.props){
     <text>
         public virtual @prop.Type @prop.Name { get; set; } = default(@prop.Type);
