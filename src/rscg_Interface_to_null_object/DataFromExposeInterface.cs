@@ -93,12 +93,51 @@ internal class DataFromExposeInterface
     }
     public string FullName { get; private set; }
     public Dictionary<string, string> DefMethodReturns { get; internal set; } = [];
+    INamedTypeSymbol? firstInterface = null;
+    public string FirstInterfaceName
+    {
+        get
+        {
+            if (firstInterface == null) return "";
+            var firstInterfaceName = firstInterface.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+            return firstInterfaceName;
+        }
+    }
+    public string NameClassInterfaceInherit
+    {
+        get
+        {
+            var name = FirstInterfaceName;
+            if (string.IsNullOrWhiteSpace(name)) return "";
+            var index = name.IndexOf('.');
+            if (index > 0)
+            {
+                name = name.Substring(index + 1);
+            }
 
+            //remov the I from start and put _null
+            if (name.StartsWith("I"))
+            {
+                name = name.Substring(1);
+            }
+            name = name + "_null";
+            return name;
+        }
+    }
+    {
+        get
+        {
+            if (firstInterface == null) return "";
+            var firstInterfaceName = firstInterface.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
+            return firstInterfaceName;
+        }
+    }
     public DataFromExposeInterface(INamedTypeSymbol type)
     {
         //this.type = type;
-        FullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-
+        firstInterface = type.AllInterfaces.FirstOrDefault();
+        
+   
         Name = type.Name;
         props = type.GetMembers()
                 .OfType<IPropertySymbol>()
