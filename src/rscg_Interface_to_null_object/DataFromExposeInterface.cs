@@ -96,8 +96,14 @@ internal class DataFromExposeInterface
 
     public DataFromExposeInterface(INamedTypeSymbol type)
     {
-        //this.type = type;
+        
         FullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        
+        var firstI= type.AllInterfaces.FirstOrDefault();
+        if(firstI != null)
+        {
+            firstInterface = new DataFromExposeInterface(firstI);
+        }
 
         Name = type.Name;
         props = type.GetMembers()
@@ -107,5 +113,31 @@ internal class DataFromExposeInterface
                 .OfType<IMethodSymbol>()
                 .Where(x => x.MethodKind == MethodKind.Ordinary)
                 .ToArray();
+    }
+
+    public DataFromExposeInterface? firstInterface = null;
+    public bool hasInterface => (this.firstInterface != null);
+    public string NameInterfaceInherited
+    {
+        get
+        {
+            if (!hasInterface) return "";
+            var name = firstInterface!.FullName;
+            
+            return name;
+        }
+    }
+    public string NameClassFromInterface
+    {
+        get { 
+            if (!hasInterface) return "";
+            var name = firstInterface!.Name;
+            if (name.StartsWith("I"))
+            {
+                name = name.Substring(1);
+            }
+            name = name + "_null";
+            return name;
+        }
     }
 }

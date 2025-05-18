@@ -38,3 +38,14 @@ await foreach (var item in department.EmployeesAsync())
 {
     Console.WriteLine(item.FirstName);
 }
+
+Manager_null manager = new Manager_null();
+manager.FirstName = "Andrei";
+var manager2 = new Manager_null();
+manager2.CopyPropertiesFrom(manager);
+if(manager2.FirstName != manager.FirstName)
+{
+    throw new Exception("CopyPropertiesFrom failed");
+}
+
+Console.WriteLine(manager2.FirstName);
