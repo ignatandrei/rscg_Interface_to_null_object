@@ -24,7 +24,33 @@
 @Model.DebuggerDisplay()
 public partial class @(nameClass) : @((Model.hasInterface) ?  Model.NameClassFromInterface +",": "") @Model.FullName
 {
+public static bool PropertiesAreEqual(@Model.FullName v1, @Model.FullName v2){
+    try{
+@foreach (var prop in Model.props)
+{
+    <text>
+        if(v1.@prop.Name != v2.@prop.Name) return false;
+    </text>
+}
+@if (Model.hasInterface)
+{
+    <text>
+        return PropertiesAreEqual(v1 as  @Model.NameInterfaceInherited ,v2 as  @Model.NameInterfaceInherited);
+    </text>
+}
+else
+{
+    <text>
+        return true;
+    </text>
+}
+    }
+    catch (System.Exception ex)
+    {
+        return false;
+    }
 
+}
 public static void CopyProperties(@Model.FullName source , @Model.FullName destination){
 
 @foreach (var prop in Model.props)
@@ -40,6 +66,9 @@ public static void CopyProperties(@Model.FullName source , @Model.FullName desti
     </text>
 }
 
+}
+public bool PropertiesAreEqual(@Model.FullName data){
+return PropertiesAreEqual(data, this);
 }
 public void CopyPropertiesFrom(@Model.FullName data){
 CopyProperties(data, this);

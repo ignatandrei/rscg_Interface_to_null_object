@@ -43,9 +43,15 @@ Manager_null manager = new Manager_null();
 manager.FirstName = "Andrei";
 var manager2 = new Manager_null();
 manager2.CopyPropertiesFrom(manager);
+
+
 if(manager2.FirstName != manager.FirstName)
 {
     throw new Exception("CopyPropertiesFrom failed");
 }
 
+if(!manager2.PropertiesAreEqual(manager))
+{
+    throw new Exception("PropertiesAreEqual failed");
+}
 Console.WriteLine(manager2.FirstName);
